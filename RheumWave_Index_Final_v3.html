@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RheumWave — Interactive Rheumatology Ultrasound Cases</title>
+  <style>
+    :root {
+      --gradient-start: #0f2e4f;
+      --gradient-end: #1b7b87;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --accent: #1b7b87;
+      --border: #e2e8f0;
+      --shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: #334155;
+      --accent: #22d3ee;
+      --shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    body { margin:0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text); transition: background .3s ease, color .3s ease; }
+    header { background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end)); color:#fff; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; box-shadow: var(--shadow); }
+    .brand { display:flex; flex-direction:column; line-height:1.2 }
+    .brand h1 { font-size:1.5rem; font-weight:800; margin:0 }
+    .brand span { font-size:.9rem; color:#cfe9ef }
+    nav { display:flex; align-items:center; gap:18px }
+    nav a { color:#fff; text-decoration:none; font-weight:600; transition:opacity .2s ease }
+    nav a:hover { opacity:.8 }
+    .theme-btn{ background:#fff; color:var(--accent); border:none; padding:8px 14px; border-radius:8px; font-weight:600; cursor:pointer; transition:all .2s ease }
+    .theme-btn:hover{ background:#e2e8f0 }
+    .container { max-width:1200px; margin:0 auto; padding:24px }
+    .controls { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; background:var(--card-bg); padding:16px; border-radius:12px; box-shadow:var(--shadow); margin-bottom:20px }
+    .controls input, .controls select, .controls button { padding:10px; border-radius:8px; border:1px solid var(--border); font-size:.95rem; background:var(--card-bg); color:var(--text) }
+    .controls button { cursor:pointer; font-weight:600 }
+    .controls .btn.secondary { background:#e2e8f0; }
+    .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:16px }
+    .card{ background:var(--card-bg); border-radius:12px; padding:16px; box-shadow:var(--shadow); border:1px solid var(--border); display:flex; flex-direction:column; justify-content:space-between; transition: transform .15s ease, box-shadow .15s ease }
+    .card:hover{ transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.1) }
+    .card h3{ margin:0; font-size:1.1rem; color:var(--accent) }
+    .card p{ color:var(--muted); font-size:.9rem }
+    .meta{ font-size:.85rem; color:var(--muted); margin-top:6px }
+    .progress{ width:100%; height:6px; background:var(--border); border-radius:4px; margin-top:8px; overflow:hidden }
+    .progress span{ display:block; height:100%; background:var(--accent); transition:width .3s ease }
+    .actions{ margin-top:10px; display:flex; flex-wrap:wrap; gap:8px }
+    .btn{ background:var(--accent); color:#fff; border:none; padding:8px 12px; border-radius:6px; font-size:.9rem; cursor:pointer }
+    .btn.secondary{ background:#e2e8f0; color:var(--text) }
+    footer{ text-align:center; padding:24px; color:var(--muted); font-size:.85rem; margin-top:40px }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>RheumWave</h1>
+      <span>Interactive Rheumatology Ultrasound Cases</span>
+    </div>
+    <nav>
+      <a href="about.html" target="_blank" rel="noopener">About</a>
+      <a href="contact.html" target="_blank" rel="noopener">Contact</a>
+      <button class="theme-btn" id="themeToggle">Switch Theme</button>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search cases...">
+      <select id="region">
+        <option value="">All Regions</option>
+        <option>Hand/Wrist</option>
+        <option>Knee</option>
+        <option>Foot/Ankle</option>
+        <option>Shoulder</option>
+        <option>Elbow</option>
+      </select>
+      <select id="pathology">
+        <option value="">All Pathologies</option>
+        <option>Inflammatory Arthritis</option>
+        <option>Crystal Arthropathy</option>
+        <option>Osteoarthritis</option>
+        <option>Nerve Entrapment</option>
+        <option>Regional Pain Syndrome</option>
+      </select>
+      <select id="level">
+        <option value="">All Levels</option>
+        <option>Intro</option>
+        <option>Core</option>
+        <option>Advanced</option>
+      </select>
+      <button class="btn secondary" id="resetAllBtn" title="Clear all saved progress">Reset All</button>
+    </div>
+    <div id="caseGrid" class="grid"></div>
+  </div>
+  <footer>© <span id="year"></span> RheumWave — All rights reserved.</footer>
+  <!-- Floating logo, bottom-right, subtle shadow & rounded edges (90px) -->
+  <img src="ChatGPT Image Oct 30, 2025, 11_51_54 AM.png" 
+     alt="MSK Ultrasound Logo"
+     style="position:fixed; bottom:20px; right:20px; height:90px; opacity:0.9; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:200;">
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle
+    const THEME_KEY = 'rheumwave-theme';
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    if (savedTheme === 'dark') document.documentElement.dataset.theme = 'dark';
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      document.documentElement.dataset.theme = isDark ? 'light' : 'dark';
+      localStorage.setItem(THEME_KEY, isDark ? 'light' : 'dark');
+    });
+
+    // Dataset with Open Case URLs
+    const cases = [
+      {id:1, title:'RA MCP Synovitis', desc:'Inflammatory arthritis with erosive changes and PD activity.', region:'Hand/Wrist', pathology:'Inflammatory Arthritis', level:'Core', url:'cases/ra-mcp-synovitis.html'},
+      {id:2, title:'Gout MTP Joint', desc:'Crystal arthropathy with double contour and hyperechoic tophi.', region:'Foot/Ankle', pathology:'Crystal Arthropathy', level:'Core', url:'cases/gout-mtp.html'},
+      {id:3, title:'Knee Osteoarthritis', desc:'Osteophytes and joint space narrowing visualized on US.', region:'Knee', pathology:'Osteoarthritis', level:'Intro', url:'cases/knee-oa.html'},
+      {id:4, title:'Carpal Tunnel Syndrome', desc:'Nerve entrapment with median nerve cross-sectional enlargement.', region:'Hand/Wrist', pathology:'Nerve Entrapment', level:'Advanced', url:'cases/carpal-tunnel.html'},
+      {id:5, title:'Lateral Epicondylitis', desc:'Regional pain syndrome with tendinopathy and hypervascularity.', region:'Elbow', pathology:'Regional Pain Syndrome', level:'Core', url:'cases/lateral-epicondylitis.html'}
+    ];
+
+    // Local progress store
+    const PROGRESS_KEY = 'rheumwave-progress';
+    const progress = JSON.parse(localStorage.getItem(PROGRESS_KEY) || '{}');
+    function saveProgress(){ localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress)); }
+
+    // Render cards with filters
+    const grid = document.getElementById('caseGrid');
+    function renderCases(){
+      const q = document.getElementById('search').value.toLowerCase();
+      const r = document.getElementById('region').value;
+      const p = document.getElementById('pathology').value;
+      const l = document.getElementById('level').value;
+      grid.innerHTML='';
+      const filtered = cases.filter(c =>
+        (!q || c.title.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q)) &&
+        (!r || c.region === r) && (!p || c.pathology === p) && (!l || c.level === l)
+      );
+      filtered.forEach(c => {
+        const pct = progress[c.id] || 0;
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div>
+            <h3>${c.title}</h3>
+            <p>${c.desc}</p>
+            <div class="meta"><strong>Region:</strong> ${c.region} | <strong>Pathology:</strong> ${c.pathology} | <strong>Level:</strong> ${c.level}</div>
+            <div class='progress'><span style='width:${pct}%'></span></div>
+          </div>
+          <div class='actions'>
+            <a class='btn' href='${c.url}' target='_blank' rel='noopener'>Open Case</a>
+            <button class='btn' onclick='markComplete(${c.id})'>Mark Complete</button>
+            <button class='btn secondary' onclick='resetCase(${c.id})'>Reset</button>
+            <button class='btn secondary' onclick='exportProgress()'>Export</button>
+            <button class='btn secondary' onclick='importProgress()'>Import</button>
+          </div>`;
+        grid.appendChild(card);
+      });
+    }
+    ['search','region','pathology','level'].forEach(id => document.getElementById(id).addEventListener('input', renderCases));
+
+    // Actions
+    window.markComplete = function(id){ progress[id] = 100; saveProgress(); renderCases(); }
+    window.resetCase = function(id){ delete progress[id]; saveProgress(); renderCases(); }
+    window.exportProgress = function(){
+      const data = JSON.stringify(progress);
+      const blob = new Blob([data], {type:'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'rheumwave_progress.json';
+      a.click();
+    }
+    window.importProgress = function(){
+      const input = document.createElement('input');
+      input.type = 'file'; input.accept = 'application/json';
+      input.onchange = async () => {
+        const file = input.files?.[0]; if(!file) return;
+        try {
+          const text = await file.text();
+          const data = JSON.parse(text);
+          Object.assign(progress, data);
+          saveProgress();
+          renderCases();
+        } catch { alert('Invalid file.'); }
+      };
+      input.click();
+    }
+
+    // Reset all
+    document.getElementById('resetAllBtn').addEventListener('click', () => {
+      if (confirm('Clear all saved progress?')) {
+        for (const k of Object.keys(progress)) delete progress[k];
+        saveProgress();
+        renderCases();
+      }
+    });
+
+    // Init
+    document.getElementById('year').textContent = new Date().getFullYear();
+    renderCases();
+  </script>
+</body>
+</html>
