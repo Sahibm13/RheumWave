@@ -36,6 +36,7 @@
       align-items:center;
       box-shadow:var(--shadow);
     }
+
     header h1{margin:0;font-size:1.4rem;font-weight:800}
     nav a{color:#fff;text-decoration:none;font-weight:600;margin-left:16px}
 
@@ -48,80 +49,47 @@
       padding:20px;
       margin-bottom:16px;
     }
+
     .meta{color:var(--muted);font-size:.9rem;margin-bottom:8px}
     h2,h3{margin-top:0}
-    figure{margin:0 0 14px 0}
+    figure{margin:0 0 16px 0}
     figcaption{font-size:.85rem;color:var(--muted);margin-top:4px}
 
-    /* Interactive MCQ */
-    .mcq{
-      margin-top:12px;
-    }
+    /* MCQ styles */
     .mcq-option{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
       border:1px solid var(--border);
       border-radius:10px;
       padding:10px 12px;
       margin:8px 0;
       cursor:pointer;
-      user-select:none;
-      transition:transform .05s ease, background .15s ease, border-color .15s ease;
       background:#fff;
-    }
-    .mcq-option:hover{
-      transform:translateY(-1px);
-      background:#f1f5f9;
-    }
-    .mcq-dot{
-      width:18px;
-      height:18px;
-      border-radius:999px;
-      border:2px solid var(--border);
-      margin-top:2px;
-      flex:0 0 auto;
     }
     .mcq-option.correct{
-      border-color:rgba(22,163,74,.55);
+      border-color:rgba(22,163,74,.6);
       background:rgba(22,163,74,.08);
     }
-    .mcq-option.correct .mcq-dot{
-      border-color:var(--ok);
-      background:rgba(22,163,74,.18);
-    }
     .mcq-option.wrong{
-      border-color:rgba(220,38,38,.55);
+      border-color:rgba(220,38,38,.6);
       background:rgba(220,38,38,.08);
     }
-    .mcq-option.wrong .mcq-dot{
-      border-color:var(--bad);
-      background:rgba(220,38,38,.18);
-    }
 
-    .mcq-feedback{
+    .feedback{
       margin-top:10px;
       padding:10px 12px;
-      border-radius:10px;
       border:1px solid var(--border);
+      border-radius:10px;
       color:var(--muted);
-      background:#fff;
     }
-    .mcq-feedback strong{color:var(--text)}
-    .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+
     .btn{
+      margin-top:10px;
+      padding:8px 12px;
+      border-radius:8px;
       border:none;
       cursor:pointer;
-      padding:9px 12px;
-      border-radius:10px;
-      font-weight:800;
+      font-weight:700;
       background:var(--accent);
       color:#fff;
-    }
-    .btn.secondary{
-      background:#e2e8f0;
-      color:var(--text);
-      border:1px solid var(--border);
     }
 
     footer{
@@ -143,155 +111,139 @@
 
 <div class="container">
 
+  <!-- CASE TEXT (UNCHANGED) -->
   <div class="card">
-    <h2>Case 1 – Gout in the Knee (Easy)</h2>
-    <div class="meta">Region: Knee · Pathology: Crystal Arthropathy · Level: Intro</div>
+    <h2>Case 1. Gout in the knee. Easy</h2>
     <p>
-      38-year-old male presenting with 3 weeks of left knee pain with warmth,
-      swelling, and limited range of motion (improving with celecoxib).
+      38-year-old white male presenting with 3 weeks of left knee pain.
+    </p>
+    <p>
+      He first injured this knee while running 10 years ago and nearly recovered
+      with physiotherapy but has experienced intermittent episodes of left knee
+      pain and swelling for the past 5 years, often occurring every few months
+      and sometimes triggered by camping, increased alcohol intake, or red meat;
+      he has never had classic podagra.
+    </p>
+    <p>
+      Over the past 3 weeks, he has developed an acute flare of left knee pain
+      with warmth, swelling, and limited range of motion due to pain and effusion,
+      though symptoms have improved with Celebrex. He occasionally experiences
+      mild right knee discomfort.
+    </p>
+    <p>
+      He is otherwise well, with no inflammatory back pain, dactylitis, uveitis
+      or constitutional symptoms.
+    </p>
+    <p>
+      He is healthy, takes no long-term medications, works as a software engineer,
+      jogs intermittently, does not smoke, uses cannabis occasionally, drinks
+      about two servings of alcohol per week and lives with his wife and
+      18-month-old daughter.
     </p>
   </div>
 
+  <!-- Q1: CHECK ALL THAT APPLY -->
   <div class="card">
-    <h3>Clinical vignette</h3>
-    <p>
-      He injured this knee while running 10 years ago and nearly recovered with physiotherapy,
-      but has had intermittent episodes of left knee pain and swelling for ~5 years, sometimes
-      triggered by camping, increased alcohol intake, or red meat. No classic podagra.
-    </p>
-    <p>
-      He is otherwise well, without inflammatory back pain, dactylitis, uveitis, or constitutional symptoms.
-    </p>
-  </div>
+    <h3>Q1. What symptoms would you inquire about in this case keeping in mind the most likely diagnosis? Check all correct answers.</h3>
 
-  <!-- Q1 -->
-  <div class="card">
-    <h3>Question 1</h3>
-    <p><strong>What symptoms/history would you inquire about? (Single best answer)</strong></p>
+    <div class="mcq-option" data-q1="correct">History of psoriasis</div>
+    <div class="mcq-option" data-q1="correct">History of preceding infections</div>
+    <div class="mcq-option" data-q1="correct">Family history of gout</div>
+    <div class="mcq-option" data-q1="wrong">History of Raynaud’s</div>
 
-    <div class="mcq" data-mcq data-correct="2">
-      <div class="mcq-option" data-index="1">
-        <span class="mcq-dot"></span>
-        <div>History of Raynaud’s phenomenon</div>
-      </div>
-      <div class="mcq-option" data-index="2">
-        <span class="mcq-dot"></span>
-        <div>Family history of gout</div>
-      </div>
-      <div class="mcq-option" data-index="3">
-        <span class="mcq-dot"></span>
-        <div>History of seasonal allergies</div>
-      </div>
-      <div class="mcq-option" data-index="4">
-        <span class="mcq-dot"></span>
-        <div>History of migraine headaches</div>
-      </div>
-
-      <div class="mcq-feedback" data-feedback>
-        Choose an option to see feedback.
-      </div>
-
-      <div class="btnrow">
-        <button class="btn secondary" data-reset type="button">Reset question</button>
-      </div>
-
-      <template data-explain>
-        <strong>Correct:</strong> Family history of gout.  
-        <br><strong>Why:</strong> This presentation (episodic flares, dietary triggers, NSAID response) supports gout.
-        Raynaud’s and unrelated histories are less relevant here.
-      </template>
+    <div class="feedback" id="q1-feedback">
+      Select all that apply, then click submit.
     </div>
+
+    <button class="btn" onclick="checkQ1()">Submit</button>
   </div>
 
-  <!-- Ultrasound placeholders -->
+  <!-- PHYSICAL EXAM -->
   <div class="card">
-    <h3>Bedside ultrasound (add your images)</h3>
+    <p>
+      On physical examination, patient was afebrile, heart rate is 89, BP 136/80,
+      BMI is 28. He appeared well with normal gait. Examination of the
+      cardiopulmonary system as unremarkable. Musculoskeletal examination reveals
+      bilateral knee effusion and warmth, larger on the left. Tenderness along
+      the medial and lateral joint lines on the left. No focal tenderness along
+      the quadriceps, infrapatellar or Achilles insertion. No skin rashes or tophi.
+    </p>
+  </div>
+
+  <!-- ULTRASOUND IMAGES -->
+  <div class="card">
+    <h3>Bedside ultrasound of the bilateral knees are demonstrated below:</h3>
 
     <figure>
-      <img src="images/lateral-femorotibial.png"
-           alt="Lateral femorotibial joint line view"
-           style="width:100%; border-radius:12px; border:1px solid var(--border);"
-           loading="lazy">
+      <img src="images/lateral-femorotibial.png" style="width:100%;border-radius:12px;border:1px solid var(--border);">
       <figcaption>Lateral femorotibial joint line view</figcaption>
     </figure>
 
     <figure>
-      <img src="images/suprapatellar-long.png"
-           alt="Longitudinal suprapatellar view"
-           style="width:100%; border-radius:12px; border:1px solid var(--border);"
-           loading="lazy">
-      <figcaption>Longitudinal suprapatellar view (knee in flexion)</figcaption>
+      <img src="images/suprapatellar-long.png" style="width:100%;border-radius:12px;border:1px solid var(--border);">
+      <figcaption>Longitudinal suprapatellar with knee in maximum flexion</figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/suprapatellar-trans.png" style="width:100%;border-radius:12px;border:1px solid var(--border);">
+      <figcaption>Transverse suprapatellar with knee in maximum flexion</figcaption>
     </figure>
   </div>
 
   <!-- Q2 -->
   <div class="card">
-    <h3>Question 2</h3>
-    <p><strong>What is the finding indicated by the yellow arrow?</strong></p>
+    <h3>Q2. What is the finding indicated by the yellow arrow?</h3>
 
-    <div class="mcq" data-mcq data-correct="3">
-      <div class="mcq-option" data-index="1"><span class="mcq-dot"></span><div>Interface sign (normal artifact)</div></div>
-      <div class="mcq-option" data-index="2"><span class="mcq-dot"></span><div>Chondrosis (cartilage loss)</div></div>
-      <div class="mcq-option" data-index="3"><span class="mcq-dot"></span><div>Double contour sign (MSU crystal deposition)</div></div>
-      <div class="mcq-option" data-index="4"><span class="mcq-dot"></span><div>Pseudo–double contour (CPPD deposition)</div></div>
+    <div class="mcq-option" onclick="checkSingle(this,false)">Interface sign (normal artifact)</div>
+    <div class="mcq-option" onclick="checkSingle(this,false)">Chondrosis (cartilage loss)</div>
+    <div class="mcq-option" onclick="checkSingle(this,true)">Double contour sign (monosodium urate crystal deposition)</div>
+    <div class="mcq-option" onclick="checkSingle(this,false)">Pseudo-double contour (calcium pyrophosphate crystal deposition)</div>
 
-      <div class="mcq-feedback" data-feedback>Choose an option to see feedback.</div>
-      <div class="btnrow">
-        <button class="btn secondary" data-reset type="button">Reset question</button>
-      </div>
-
-      <template data-explain>
-        <strong>Correct:</strong> Double contour sign.  
-        <br><strong>Why:</strong> A hyperechoic line along the cartilage surface is classic for monosodium urate deposition.
-      </template>
-    </div>
+    <div class="feedback">Click an option to see feedback.</div>
   </div>
 
   <!-- Q3 -->
   <div class="card">
-    <h3>Question 3</h3>
-    <p><strong>Which investigation is most helpful in confirming the diagnosis? (Single best answer)</strong></p>
+    <h3>Q3. What investigations are more likely to aid in confirming the diagnosis?</h3>
 
-    <div class="mcq" data-mcq data-correct="3">
-      <div class="mcq-option" data-index="1"><span class="mcq-dot"></span><div>RF and anti-CCP</div></div>
-      <div class="mcq-option" data-index="2"><span class="mcq-dot"></span><div>HLA-B*27</div></div>
-      <div class="mcq-option" data-index="3"><span class="mcq-dot"></span><div>Synovial fluid analysis with crystal microscopy</div></div>
-      <div class="mcq-option" data-index="4"><span class="mcq-dot"></span><div>MRI of the knee</div></div>
+    <div class="mcq-option" onclick="checkSingle(this,false)">RF and Anti-CCP</div>
+    <div class="mcq-option" onclick="checkSingle(this,false)">HLA-B*27</div>
+    <div class="mcq-option" onclick="checkSingle(this,true)">Urate serum level</div>
+    <div class="mcq-option" onclick="checkSingle(this,false)">MRI of the knee</div>
+  </div>
 
-      <div class="mcq-feedback" data-feedback>Choose an option to see feedback.</div>
-      <div class="btnrow">
-        <button class="btn secondary" data-reset type="button">Reset question</button>
-      </div>
-
-      <template data-explain>
-        <strong>Correct:</strong> Synovial fluid analysis with crystal microscopy.  
-        <br><strong>Why:</strong> Identifying negatively birefringent, needle-shaped MSU crystals is confirmatory.
-        Serum urate supports but does not confirm; MRI is nonspecific.
-      </template>
-    </div>
+  <!-- INVESTIGATIONS -->
+  <div class="card">
+    <p>
+      Investigations reveal a uric acid level of 559 umol/L, CRP of 18 mg/L,
+      negative RF, anti-CCP and HLA-B*27. Fluid analysis from arthrocentesis of
+      the left knee reveals 5966 absolute WBC count (mostly neutrophils and
+      monocytes), 2000 RBC and negative culture. The synovial fluid sample was
+      examined under polarized light microscopy and needle-shaped, negatively
+      birefringent crystals were visualized, consistent with monosodium urate
+      crystals.
+    </p>
   </div>
 
   <!-- Q4 -->
   <div class="card">
-    <h3>Question 4</h3>
-    <p><strong>What is the most likely final diagnosis?</strong></p>
+    <h3>Q4. What is your final diagnosis?</h3>
 
-    <div class="mcq" data-mcq data-correct="1">
-      <div class="mcq-option" data-index="1"><span class="mcq-dot"></span><div>Oligoarticular gout flare</div></div>
-      <div class="mcq-option" data-index="2"><span class="mcq-dot"></span><div>Peripheral spondyloarthritis</div></div>
-      <div class="mcq-option" data-index="3"><span class="mcq-dot"></span><div>Early rheumatoid arthritis</div></div>
-      <div class="mcq-option" data-index="4"><span class="mcq-dot"></span><div>Secondary osteoarthritis</div></div>
+    <div class="mcq-option" onclick="checkSingle(this,true)">Oligoarticular gout flare</div>
+    <div class="mcq-option" onclick="checkSingle(this,false)">Peripheral spondylarthritis</div>
+    <div class="mcq-option" onclick="checkSingle(this,false)">Early rheumatoid arthritis</div>
+    <div class="mcq-option" onclick="checkSingle(this,false)">Secondary osteoarthritis</div>
+  </div>
 
-      <div class="mcq-feedback" data-feedback>Choose an option to see feedback.</div>
-      <div class="btnrow">
-        <button class="btn secondary" data-reset type="button">Reset question</button>
-      </div>
-
-      <template data-explain>
-        <strong>Correct:</strong> Oligoarticular gout flare.  
-        <br><strong>Why:</strong> Dietary triggers, episodic flares, NSAID response, double contour sign, and crystal-proven MSU deposition.
-      </template>
-    </div>
+  <!-- FINAL EXPLANATION -->
+  <div class="card">
+    <p>
+      In light of the subacute non-traumatic onset, dietary triggers for the knee
+      pain/swelling, improvement of symptoms after 3 weeks despite no targeted
+      immunosuppression, seronegative status, high uric acid and the finding of
+      double contour on the bedside ultrasound, this patient is most likely to
+      have an oligo-articular flare of gout confirmed on synovial fluid analysis.
+    </p>
   </div>
 
 </div>
@@ -301,58 +253,23 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Interactive MCQ engine (single-best-answer)
-  document.querySelectorAll("[data-mcq]").forEach((mcq) => {
-    const correctIndex = Number(mcq.getAttribute("data-correct"));
-    const options = mcq.querySelectorAll(".mcq-option");
-    const feedbackBox = mcq.querySelector("[data-feedback]");
-    const explainTpl = mcq.querySelector("template[data-explain]");
-    const resetBtn = mcq.querySelector("[data-reset]");
+  function checkSingle(el, correct){
+    const siblings = el.parentElement.querySelectorAll(".mcq-option");
+    siblings.forEach(s => s.classList.remove("correct","wrong"));
+    el.classList.add(correct ? "correct" : "wrong");
+  }
 
-    function setFeedback(html, tone) {
-      feedbackBox.innerHTML = html;
-      // Optional: subtle tone emphasis
-      feedbackBox.style.borderColor =
-        tone === "ok" ? "rgba(22,163,74,.45)" :
-        tone === "bad" ? "rgba(220,38,38,.45)" :
-        "var(--border)";
-    }
-
-    function clearStyles() {
-      options.forEach(o => o.classList.remove("correct", "wrong"));
-      setFeedback("Choose an option to see feedback.", "neutral");
-    }
-
-    options.forEach((opt) => {
-      opt.addEventListener("click", () => {
-        // Lock to one attempt? If you want unlimited attempts, remove the next 2 lines.
-        // If you want unlimited attempts, comment these out:
-        // if (mcq.getAttribute("data-answered") === "true") return;
-        // mcq.setAttribute("data-answered", "true");
-
-        const chosen = Number(opt.getAttribute("data-index"));
-        options.forEach(o => o.classList.remove("correct", "wrong"));
-
-        if (chosen === correctIndex) {
-          opt.classList.add("correct");
-          setFeedback(explainTpl.innerHTML, "ok");
-        } else {
-          opt.classList.add("wrong");
-          setFeedback(
-            "<strong>Not quite.</strong> Try again — then check the explanation after a correct choice.",
-            "bad"
-          );
-        }
-      });
+  function checkQ1(){
+    document.querySelectorAll("[data-q1]").forEach(opt=>{
+      if(opt.getAttribute("data-q1")==="correct"){
+        opt.classList.add("correct");
+      } else {
+        opt.classList.add("wrong");
+      }
     });
-
-    resetBtn?.addEventListener("click", () => {
-      mcq.removeAttribute("data-answered");
-      clearStyles();
-    });
-
-    clearStyles();
-  });
+    document.getElementById("q1-feedback").innerText =
+      "Correct options highlighted in green. Incorrect option highlighted in red.";
+  }
 </script>
 </body>
 </html>
