@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RheumWave – Case 1</title>
+
+  <style>
+    :root {
+      --gradient-start:#0f2e4f;
+      --gradient-end:#1b7b87;
+      --bg:#f8fafc;
+      --card-bg:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --accent:#1b7b87;
+      --border:#e2e8f0;
+      --shadow:0 6px 20px rgba(0,0,0,0.08);
+    }
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    header{
+      background:linear-gradient(90deg,var(--gradient-start),var(--gradient-end));
+      color:#fff;
+      padding:14px 24px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      box-shadow:var(--shadow);
+    }
+    header h1{margin:0;font-size:1.4rem;font-weight:800}
+    nav a{color:#fff;text-decoration:none;font-weight:600;margin-left:16px}
+
+    .container{max-width:900px;margin:0 auto;padding:24px}
+    .card{
+      background:var(--card-bg);
+      border:1px solid var(--border);
+      border-radius:12px;
+      box-shadow:var(--shadow);
+      padding:20px;
+      margin-bottom:16px;
+    }
+    .meta{color:var(--muted);font-size:.9rem;margin-bottom:8px}
+    h2,h3{margin-top:0}
+    ul{padding-left:18px;line-height:1.5}
+    details summary{
+      cursor:pointer;
+      font-weight:700;
+      color:var(--accent);
+    }
+    footer{
+      text-align:center;
+      padding:24px;
+      color:var(--muted);
+      font-size:.85rem;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <h1>RheumWave</h1>
+  <nav>
+    <a href="../RheumWave_Index_Final_v4.html">Back to Cases</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <!-- CASE HEADER -->
+  <div class="card">
+    <h2>Case 1 – Gout in the Knee (Easy)</h2>
+    <div class="meta">
+      Region: Knee · Pathology: Crystal Arthropathy · Level: Intro
+    </div>
+    <p>
+      38-year-old male presenting with a 3-week history of left knee pain,
+      swelling, warmth, and reduced range of motion.
+    </p>
+  </div>
+
+  <!-- CLINICAL VIGNETTE -->
+  <div class="card">
+    <h3>Clinical vignette</h3>
+    <p>
+      The patient first injured his left knee while running 10 years ago and
+      nearly recovered with physiotherapy. Over the past 5 years, he has had
+      intermittent episodes of knee pain and swelling occurring every few
+      months, sometimes triggered by camping, increased alcohol intake, or red
+      meat. He has never experienced classic podagra.
+    </p>
+    <p>
+      Over the past 3 weeks, he developed an acute flare with warmth, swelling,
+      and limited range of motion due to pain and effusion, improving partially
+      with celecoxib. He is otherwise well with no inflammatory back pain,
+      dactylitis, uveitis, or constitutional symptoms.
+    </p>
+  </div>
+
+  <!-- QUESTION 1 -->
+  <div class="card">
+    <h3>Question 1</h3>
+    <p><strong>What symptoms would you inquire about given the most likely diagnosis?</strong></p>
+    <ul>
+      <li>History of psoriasis</li>
+      <li>History of preceding gastrointestinal or genitourinary infections</li>
+      <li>Family history of gout</li>
+      <li>History of Raynaud’s phenomenon</li>
+    </ul>
+
+    <details>
+      <summary>Explanation</summary>
+      <p>
+        Psoriasis increases the risk of gout and raises consideration of
+        psoriatic arthritis. Preceding infections are relevant when evaluating
+        reactive arthritis in young males with oligoarthritis. A family history
+        of gout supports the diagnosis. Raynaud’s phenomenon is less relevant
+        here.
+      </p>
+    </details>
+  </div>
+
+  <!-- ULTRASOUND -->
+  <div class="card">
+    <h3>Bedside ultrasound</h3>
+    <p>
+      Ultrasound of the bilateral knees demonstrates effusions and a hyperechoic
+      line along the articular cartilage surface.
+    </p>
+    <p class="meta">
+      (Images would be placed here: lateral femorotibial joint line and
+      suprapatellar views.)
+    </p>
+  </div>
+
+  <!-- QUESTION 2 -->
+  <div class="card">
+    <h3>Question 2</h3>
+    <p><strong>What is the finding indicated by the yellow arrow?</strong></p>
+    <ul>
+      <li>Interface sign (normal artifact)</li>
+      <li>Chondrosis</li>
+      <li>Double contour sign</li>
+      <li>Pseudo–double contour sign</li>
+    </ul>
+
+    <details>
+      <summary>Answer</summary>
+      <p>
+        <strong>Double contour sign</strong> — representing monosodium urate
+        crystal deposition on the surface of articular cartilage.
+      </p>
+    </details>
+  </div>
+
+  <!-- QUESTION 3 -->
+  <div class="card">
+    <h3>Question 3</h3>
+    <p><strong>Which investigations are most helpful?</strong></p>
+    <ul>
+      <li>Serum urate level</li>
+      <li>Synovial fluid analysis</li>
+      <li>Dual-energy CT (if needed)</li>
+    </ul>
+
+    <details>
+      <summary>Explanation</summary>
+      <p>
+        RF, anti-CCP, and HLA-B*27 are not confirmatory here. MRI may show
+        synovitis but is inferior to DECT for gout. Arthrocentesis remains
+        diagnostic.
+      </p>
+    </details>
+  </div>
+
+  <!-- FINAL DIAGNOSIS -->
+  <div class="card">
+    <h3>Final diagnosis</h3>
+    <details open>
+      <summary>Reveal</summary>
+      <p>
+        <strong>Oligoarticular gout flare</strong>
+      </p>
+      <p>
+        Supported by dietary triggers, elevated serum urate, ultrasound double
+        contour sign, and negatively birefringent monosodium urate crystals on
+        synovial fluid analysis.
+      </p>
+    </details>
+  </div>
+
+</div>
+
+<footer>
+  © <span id="year"></span> RheumWave
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
