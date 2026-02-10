@@ -108,7 +108,10 @@
       border-radius:10px;
       color:var(--muted);
       background:#fff;
+      line-height:1.55;
+      white-space:pre-wrap;
     }
+    .feedback strong{color:var(--text)}
 
     .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
     .btn{
@@ -140,14 +143,13 @@
       list-style:none;
     }
     details.expl summary::-webkit-details-marker{display:none}
+
     .opt-expl{
       border-top:1px solid var(--border);
       padding-top:10px;
       margin-top:10px;
     }
-    .opt-expl:first-child{
-      border-top:none;padding-top:0;margin-top:0;
-    }
+    .opt-expl:first-child{border-top:none;padding-top:0;margin-top:0}
     .opt-title{font-weight:900;margin:0 0 6px 0}
     .opt-body{margin:0;color:var(--text);line-height:1.55;white-space:pre-wrap}
 
@@ -198,20 +200,27 @@
     <h3>Q1. What symptoms would you inquire about in this case keeping in mind the most likely diagnosis? Check all correct answers.</h3>
 
     <div class="mcq-wrap" data-qtype="multi" data-mcq>
-      <div class="mcq-option" data-index="1" data-correct="true">
+      <div class="mcq-option" data-index="1" data-correct="true"
+           data-expl="Explanation: Inquiring about history of psoriasis in important as this increases risk of gout and to investigate the risk of this representing psoriatic arthritis.  ">
         <span class="mcq-dot"></span><div>History of psoriasis</div>
       </div>
-      <div class="mcq-option" data-index="2" data-correct="true">
+
+      <div class="mcq-option" data-index="2" data-correct="true"
+           data-expl="Explanation: It is important to ask about gastrointestinal or genitourinary infections in young male presenting with oligo-arthritis to assess for reactive arthritis.   ">
         <span class="mcq-dot"></span><div>History of preceding infections</div>
       </div>
-      <div class="mcq-option" data-index="3" data-correct="true">
+
+      <div class="mcq-option" data-index="3" data-correct="true"
+           data-expl="Explanation: Gout is a potential diagnosis given the acute onset, dietary triggers and improvement of symptoms with NSAIDs alone.">
         <span class="mcq-dot"></span><div>Family history of gout</div>
       </div>
-      <div class="mcq-option" data-index="4" data-correct="false">
+
+      <div class="mcq-option" data-index="4" data-correct="false"
+           data-expl="Explanation: Connective tissue disease is not the most likely diagnosis here. ">
         <span class="mcq-dot"></span><div>History of Raynaud’s</div>
       </div>
 
-      <div class="feedback" data-feedback>Select all that apply, then click Submit.</div>
+      <div class="feedback" data-feedback>Click options to select them. You can also click any option to view its explanation here. Then click Submit.</div>
 
       <div class="btnrow">
         <button class="btn" type="button" data-submit>Submit</button>
@@ -223,12 +232,12 @@
 
         <div class="opt-expl">
           <p class="opt-title">History of psoriasis</p>
-          <p class="opt-body">Explanation: Inquiring about history of psoriasis in important as this increases risk of gout and to investigate the risk of this representing psoriatic arthritis.</p>
+          <p class="opt-body">Explanation: Inquiring about history of psoriasis in important as this increases risk of gout and to investigate the risk of this representing psoriatic arthritis.  </p>
         </div>
 
         <div class="opt-expl">
           <p class="opt-title">History of preceding infections</p>
-          <p class="opt-body">Explanation: It is important to ask about gastrointestinal or genitourinary infections in young male presenting with oligo-arthritis to assess for reactive arthritis.</p>
+          <p class="opt-body">Explanation: It is important to ask about gastrointestinal or genitourinary infections in young male presenting with oligo-arthritis to assess for reactive arthritis.   </p>
         </div>
 
         <div class="opt-expl">
@@ -238,7 +247,7 @@
 
         <div class="opt-expl">
           <p class="opt-title">History of Raynaud’s</p>
-          <p class="opt-body">Explanation: Connective tissue disease is not the most likely diagnosis here.</p>
+          <p class="opt-body">Explanation: Connective tissue disease is not the most likely diagnosis here. </p>
         </div>
       </details>
     </div>
@@ -251,7 +260,7 @@
     </p>
   </div>
 
-  <!-- ULTRASOUND (3 pictures; captions verbatim) -->
+  <!-- ULTRASOUND (3 pictures; captions verbatim including duplicates) -->
   <div class="card">
     <h3>Bedside ultrasound of the bilateral knees are demonstrated below:</h3>
 
@@ -288,12 +297,20 @@
     <h3>Q2. What is the finding indicated by the yellow arrow?</h3>
 
     <div class="mcq-wrap" data-qtype="single" data-mcq data-correct-index="3">
-      <div class="mcq-option" data-index="1"><span class="mcq-dot"></span><div>Interface sign (normal artifact)</div></div>
-      <div class="mcq-option" data-index="2"><span class="mcq-dot"></span><div>Chondrosis (cartilage loss)</div></div>
-      <div class="mcq-option" data-index="3"><span class="mcq-dot"></span><div>Double contour sign (monosodium urate crystal deposition)</div></div>
-      <div class="mcq-option" data-index="4"><span class="mcq-dot"></span><div>Pseudo-double contour (calcium pyrophosphate crystal deposition)</div></div>
+      <div class="mcq-option" data-index="1" data-expl="">
+        <span class="mcq-dot"></span><div>Interface sign (normal artifact)</div>
+      </div>
+      <div class="mcq-option" data-index="2" data-expl="">
+        <span class="mcq-dot"></span><div>Chondrosis (cartilage loss)</div>
+      </div>
+      <div class="mcq-option" data-index="3" data-expl="">
+        <span class="mcq-dot"></span><div>Double contour sign (monosodium urate crystal deposition)</div>
+      </div>
+      <div class="mcq-option" data-index="4" data-expl="">
+        <span class="mcq-dot"></span><div>Pseudo-double contour (calcium pyrophosphate crystal deposition)</div>
+      </div>
 
-      <div class="feedback" data-feedback>Click an option to see feedback.</div>
+      <div class="feedback" data-feedback>Click an option to view its explanation here.</div>
 
       <div class="btnrow">
         <button class="btn secondary" type="button" data-reset>Reset</button>
@@ -302,40 +319,36 @@
       <details class="expl">
         <summary>View/Hide option explanations</summary>
 
-        <div class="opt-expl">
-          <p class="opt-title">Interface sign (normal artifact)</p>
-          <p class="opt-body"></p>
-        </div>
-
-        <div class="opt-expl">
-          <p class="opt-title">Chondrosis (cartilage loss)</p>
-          <p class="opt-body"></p>
-        </div>
-
-        <div class="opt-expl">
-          <p class="opt-title">Double contour sign (monosodium urate crystal deposition)</p>
-          <p class="opt-body"></p>
-        </div>
-
-        <div class="opt-expl">
-          <p class="opt-title">Pseudo-double contour (calcium pyrophosphate crystal deposition)</p>
-          <p class="opt-body"></p>
-        </div>
+        <div class="opt-expl"><p class="opt-title">Interface sign (normal artifact)</p><p class="opt-body"></p></div>
+        <div class="opt-expl"><p class="opt-title">Chondrosis (cartilage loss)</p><p class="opt-body"></p></div>
+        <div class="opt-expl"><p class="opt-title">Double contour sign (monosodium urate crystal deposition)</p><p class="opt-body"></p></div>
+        <div class="opt-expl"><p class="opt-title">Pseudo-double contour (calcium pyrophosphate crystal deposition)</p><p class="opt-body"></p></div>
       </details>
     </div>
   </div>
 
-  <!-- Q3 (interactive single-best-answer; text verbatim; explanations verbatim where present) -->
+  <!-- Q3 (interactive single-best-answer; explanations verbatim where provided) -->
   <div class="card">
     <h3>Q3. What investigations are more likely to aid in confirming the diagnosis?</h3>
 
     <div class="mcq-wrap" data-qtype="single" data-mcq data-correct-index="3">
-      <div class="mcq-option" data-index="1"><span class="mcq-dot"></span><div>RF and Anti-CCP</div></div>
-      <div class="mcq-option" data-index="2"><span class="mcq-dot"></span><div>HLA-B*27</div></div>
-      <div class="mcq-option" data-index="3"><span class="mcq-dot"></span><div>Urate serum level</div></div>
-      <div class="mcq-option" data-index="4"><span class="mcq-dot"></span><div>MRI of the knee</div></div>
+      <div class="mcq-option" data-index="1"
+           data-expl="Explanation: Rheumatoid arthritis is not the most likely diagnosis here. ">
+        <span class="mcq-dot"></span><div>RF and Anti-CCP</div>
+      </div>
+      <div class="mcq-option" data-index="2"
+           data-expl="Explanation: HLA-B*27 is not utilized as a confirmatory test, though it’s presence has prognostic value. ">
+        <span class="mcq-dot"></span><div>HLA-B*27</div>
+      </div>
+      <div class="mcq-option" data-index="3" data-expl="">
+        <span class="mcq-dot"></span><div>Urate serum level</div>
+      </div>
+      <div class="mcq-option" data-index="4"
+           data-expl="Explanation: MRI of the knee is likely to detect synovitis and effusion but is not the best modality to assess for gout. Dual-energy CT (DECT) scan is a more favorable imaging modality. ">
+        <span class="mcq-dot"></span><div>MRI of the knee</div>
+      </div>
 
-      <div class="feedback" data-feedback>Click an option to see feedback.</div>
+      <div class="feedback" data-feedback>Click an option to view its explanation here.</div>
 
       <div class="btnrow">
         <button class="btn secondary" type="button" data-reset>Reset</button>
@@ -346,12 +359,12 @@
 
         <div class="opt-expl">
           <p class="opt-title">RF and Anti-CCP</p>
-          <p class="opt-body">Explanation: Rheumatoid arthritis is not the most likely diagnosis here.</p>
+          <p class="opt-body">Explanation: Rheumatoid arthritis is not the most likely diagnosis here. </p>
         </div>
 
         <div class="opt-expl">
           <p class="opt-title">HLA-B*27</p>
-          <p class="opt-body">Explanation: HLA-B*27 is not utilized as a confirmatory test, though it’s presence has prognostic value.</p>
+          <p class="opt-body">Explanation: HLA-B*27 is not utilized as a confirmatory test, though it’s presence has prognostic value. </p>
         </div>
 
         <div class="opt-expl">
@@ -361,7 +374,7 @@
 
         <div class="opt-expl">
           <p class="opt-title">MRI of the knee</p>
-          <p class="opt-body">Explanation: MRI of the knee is likely to detect synovitis and effusion but is not the best modality to assess for gout. Dual-energy CT (DECT) scan is a more favorable imaging modality.</p>
+          <p class="opt-body">Explanation: MRI of the knee is likely to detect synovitis and effusion but is not the best modality to assess for gout. Dual-energy CT (DECT) scan is a more favorable imaging modality. </p>
         </div>
       </details>
     </div>
@@ -379,12 +392,20 @@
     <h3>Q4. What is your final diagnosis?</h3>
 
     <div class="mcq-wrap" data-qtype="single" data-mcq data-correct-index="1">
-      <div class="mcq-option" data-index="1"><span class="mcq-dot"></span><div>Oligoarticular gout flare</div></div>
-      <div class="mcq-option" data-index="2"><span class="mcq-dot"></span><div>Peripheral spondylarthritis</div></div>
-      <div class="mcq-option" data-index="3"><span class="mcq-dot"></span><div>Early rheumatoid arthritis</div></div>
-      <div class="mcq-option" data-index="4"><span class="mcq-dot"></span><div>Secondary osteoarthritis</div></div>
+      <div class="mcq-option" data-index="1" data-expl="">
+        <span class="mcq-dot"></span><div>Oligoarticular gout flare</div>
+      </div>
+      <div class="mcq-option" data-index="2" data-expl="">
+        <span class="mcq-dot"></span><div>Peripheral spondylarthritis</div>
+      </div>
+      <div class="mcq-option" data-index="3" data-expl="">
+        <span class="mcq-dot"></span><div>Early rheumatoid arthritis</div>
+      </div>
+      <div class="mcq-option" data-index="4" data-expl="">
+        <span class="mcq-dot"></span><div>Secondary osteoarthritis</div>
+      </div>
 
-      <div class="feedback" data-feedback>Click an option to see feedback.</div>
+      <div class="feedback" data-feedback>Click an option to view its explanation here.</div>
 
       <div class="btnrow">
         <button class="btn secondary" type="button" data-reset>Reset</button>
@@ -392,35 +413,22 @@
 
       <details class="expl">
         <summary>View/Hide option explanations</summary>
-
-        <div class="opt-expl">
-          <p class="opt-title">Oligoarticular gout flare</p>
-          <p class="opt-body"></p>
-        </div>
-
-        <div class="opt-expl">
-          <p class="opt-title">Peripheral spondylarthritis</p>
-          <p class="opt-body"></p>
-        </div>
-
-        <div class="opt-expl">
-          <p class="opt-title">Early rheumatoid arthritis</p>
-          <p class="opt-body"></p>
-        </div>
-
-        <div class="opt-expl">
-          <p class="opt-title">Secondary osteoarthritis</p>
-          <p class="opt-body"></p>
-        </div>
+        <div class="opt-expl"><p class="opt-title">Oligoarticular gout flare</p><p class="opt-body"></p></div>
+        <div class="opt-expl"><p class="opt-title">Peripheral spondylarthritis</p><p class="opt-body"></p></div>
+        <div class="opt-expl"><p class="opt-title">Early rheumatoid arthritis</p><p class="opt-body"></p></div>
+        <div class="opt-expl"><p class="opt-title">Secondary osteoarthritis</p><p class="opt-body"></p></div>
       </details>
     </div>
   </div>
 
-  <!-- FINAL EXPLANATION (VERBATIM) -->
+  <!-- FINAL EXPLANATION (VIEW/HIDE; VERBATIM) -->
   <div class="card">
-    <p>
-      Final explanation: In light of the subacute non-traumatic onset, dietary triggers for the knee pain/swelling, improvement of symptoms after 3 weeks despite no targeted immunosuppression, seronegative status, high uric acid and the finding of double contour on the bedside ultrasound, this patient is most likely to have an oligo-articular flare of gout confirmed on synovial fluid analysis.
-    </p>
+    <details class="expl">
+      <summary>Final explanation</summary>
+      <p class="opt-body" style="margin-top:10px;">
+Final explanation: In light of the subacute non-traumatic onset, dietary triggers for the knee pain/swelling, improvement of symptoms after 3 weeks despite no targeted immunosuppression, seronegative status, high uric acid and the finding of double contour on the bedside ultrasound, this patient is most likely to have an oligo-articular flare of gout confirmed on synovial fluid analysis.
+      </p>
+    </details>
   </div>
 
 </div>
@@ -430,9 +438,15 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // MCQ engine:
-  // - single: click marks correct/wrong immediately
-  // - multi: click toggles selection; Submit grades selections
+  function showOptionExplanation(feedbackEl, optEl) {
+    const expl = (optEl.getAttribute("data-expl") || "").trim();
+    if (expl) {
+      feedbackEl.innerHTML = "<strong>" + optEl.innerText + "</strong>\n\n" + expl;
+    } else {
+      feedbackEl.innerHTML = "<strong>" + optEl.innerText + "</strong>\n\n(No explanation provided in source text.)";
+    }
+  }
+
   document.querySelectorAll("[data-mcq]").forEach((wrap) => {
     const qType = wrap.getAttribute("data-qtype");
     const options = wrap.querySelectorAll(".mcq-option");
@@ -445,9 +459,11 @@
         o.classList.remove("selected", "correct", "wrong");
         o.removeAttribute("data-picked");
       });
-      if (feedback) feedback.textContent = qType === "multi"
-        ? "Select all that apply, then click Submit."
-        : "Click an option to see feedback.";
+      if (feedback) {
+        feedback.textContent = qType === "multi"
+          ? "Click options to select them. You can also click any option to view its explanation here. Then click Submit."
+          : "Click an option to view its explanation here.";
+      }
     }
 
     if (qType === "single") {
@@ -459,7 +475,7 @@
           options.forEach(o => o.classList.remove("correct", "wrong", "selected"));
           opt.classList.add("selected");
           opt.classList.add(idx === correctIndex ? "correct" : "wrong");
-          if (feedback) feedback.textContent = idx === correctIndex ? "Correct." : "Incorrect.";
+          if (feedback) showOptionExplanation(feedback, opt);
         });
       });
 
@@ -470,11 +486,16 @@
     if (qType === "multi") {
       options.forEach((opt) => {
         opt.addEventListener("click", () => {
+          // toggle selection
           const picked = opt.getAttribute("data-picked") === "true";
           opt.setAttribute("data-picked", picked ? "false" : "true");
           opt.classList.toggle("selected", !picked);
-          // don't grade until submit
+
+          // no grading until submit
           opt.classList.remove("correct", "wrong");
+
+          // show THIS option's explanation immediately
+          if (feedback) showOptionExplanation(feedback, opt);
         });
       });
 
@@ -483,6 +504,7 @@
           const isCorrect = opt.getAttribute("data-correct") === "true";
           const picked = opt.getAttribute("data-picked") === "true";
           opt.classList.remove("correct", "wrong");
+
           if (picked && isCorrect) opt.classList.add("correct");
           if (picked && !isCorrect) opt.classList.add("wrong");
           if (!picked && isCorrect) opt.classList.add("wrong"); // missed correct
