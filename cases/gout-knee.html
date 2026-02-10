@@ -17,12 +17,14 @@
       --border:#e2e8f0;
       --shadow:0 6px 20px rgba(0,0,0,0.08);
     }
+
     body{
       margin:0;
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
       background:var(--bg);
       color:var(--text);
     }
+
     header{
       background:linear-gradient(90deg,var(--gradient-start),var(--gradient-end));
       color:#fff;
@@ -32,10 +34,12 @@
       align-items:center;
       box-shadow:var(--shadow);
     }
+
     header h1{margin:0;font-size:1.4rem;font-weight:800}
     nav a{color:#fff;text-decoration:none;font-weight:600;margin-left:16px}
 
     .container{max-width:900px;margin:0 auto;padding:24px}
+
     .card{
       background:var(--card-bg);
       border:1px solid var(--border);
@@ -44,14 +48,34 @@
       padding:20px;
       margin-bottom:16px;
     }
+
     .meta{color:var(--muted);font-size:.9rem;margin-bottom:8px}
+
+    ul{padding-left:18px;line-height:1.6}
     h2,h3{margin-top:0}
-    ul{padding-left:18px;line-height:1.5}
+
+    .mcq{
+      list-style:none;
+      padding-left:0;
+    }
+    .mcq li{
+      padding:8px 10px;
+      border:1px solid var(--border);
+      border-radius:8px;
+      margin-bottom:8px;
+      background:#fff;
+    }
+
     details summary{
       cursor:pointer;
       font-weight:700;
       color:var(--accent);
+      margin-top:8px;
     }
+
+    figure{margin:0 0 14px 0}
+    figcaption{font-size:.85rem;color:var(--muted);margin-top:4px}
+
     footer{
       text-align:center;
       padding:24px;
@@ -87,39 +111,37 @@
   <div class="card">
     <h3>Clinical vignette</h3>
     <p>
-      The patient first injured his left knee while running 10 years ago and
-      nearly recovered with physiotherapy. Over the past 5 years, he has had
-      intermittent episodes of knee pain and swelling occurring every few
-      months, sometimes triggered by camping, increased alcohol intake, or red
-      meat. He has never experienced classic podagra.
+      The patient injured his left knee while running 10 years ago and nearly
+      recovered with physiotherapy. Over the past 5 years, he has experienced
+      intermittent episodes of knee pain and swelling every few months, often
+      triggered by increased alcohol intake or red meat. He has never had classic
+      podagra.
     </p>
     <p>
       Over the past 3 weeks, he developed an acute flare with warmth, swelling,
-      and limited range of motion due to pain and effusion, improving partially
-      with celecoxib. He is otherwise well with no inflammatory back pain,
-      dactylitis, uveitis, or constitutional symptoms.
+      and limited range of motion, improving partially with celecoxib. He has no
+      inflammatory back pain, dactylitis, uveitis, or constitutional symptoms.
     </p>
   </div>
 
   <!-- QUESTION 1 -->
   <div class="card">
     <h3>Question 1</h3>
-    <p><strong>What symptoms would you inquire about given the most likely diagnosis?</strong></p>
-    <ul>
-      <li>History of psoriasis</li>
-      <li>History of preceding gastrointestinal or genitourinary infections</li>
-      <li>Family history of gout</li>
+    <p><strong>Which of the following would you inquire about given the most likely diagnosis?</strong></p>
+
+    <ul class="mcq">
       <li>History of Raynaud’s phenomenon</li>
+      <li>History of psoriasis</li>
+      <li>Family history of gout</li>
+      <li>History of preceding GI or GU infection</li>
     </ul>
 
     <details>
       <summary>Explanation</summary>
       <p>
-        Psoriasis increases the risk of gout and raises consideration of
-        psoriatic arthritis. Preceding infections are relevant when evaluating
-        reactive arthritis in young males with oligoarthritis. A family history
-        of gout supports the diagnosis. Raynaud’s phenomenon is less relevant
-        here.
+        Psoriasis increases gout risk and raises consideration of psoriatic
+        arthritis. Family history supports gout. Preceding GI/GU infection is
+        relevant when considering reactive arthritis. Raynaud’s is less relevant.
       </p>
     </details>
   </div>
@@ -127,23 +149,33 @@
   <!-- ULTRASOUND -->
   <div class="card">
     <h3>Bedside ultrasound</h3>
-    <p>
-      Ultrasound of the bilateral knees demonstrates effusions and a hyperechoic
-      line along the articular cartilage surface.
-    </p>
-    <p class="meta">
-      (Images would be placed here: lateral femorotibial joint line and
-      suprapatellar views.)
-    </p>
+
+    <!-- Replace src paths with your real images -->
+    <figure>
+      <img src="images/lateral-femorotibial.png"
+           alt="Lateral femorotibial joint line view"
+           style="width:100%; border-radius:12px; border:1px solid var(--border);"
+           loading="lazy">
+      <figcaption>Lateral femorotibial joint line view</figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/suprapatellar-long.png"
+           alt="Longitudinal suprapatellar view"
+           style="width:100%; border-radius:12px; border:1px solid var(--border);"
+           loading="lazy">
+      <figcaption>Longitudinal suprapatellar view (knee in flexion)</figcaption>
+    </figure>
   </div>
 
   <!-- QUESTION 2 -->
   <div class="card">
     <h3>Question 2</h3>
-    <p><strong>What is the finding indicated by the yellow arrow?</strong></p>
-    <ul>
+    <p><strong>What is the ultrasound finding indicated by the yellow arrow?</strong></p>
+
+    <ul class="mcq">
       <li>Interface sign (normal artifact)</li>
-      <li>Chondrosis</li>
+      <li>Chondrosis (cartilage loss)</li>
       <li>Double contour sign</li>
       <li>Pseudo–double contour sign</li>
     </ul>
@@ -160,19 +192,20 @@
   <!-- QUESTION 3 -->
   <div class="card">
     <h3>Question 3</h3>
-    <p><strong>Which investigations are most helpful?</strong></p>
-    <ul>
+    <p><strong>Which investigation is most helpful in confirming the diagnosis?</strong></p>
+
+    <ul class="mcq">
+      <li>RF and anti-CCP antibodies</li>
+      <li>HLA-B*27</li>
       <li>Serum urate level</li>
-      <li>Synovial fluid analysis</li>
-      <li>Dual-energy CT (if needed)</li>
+      <li>MRI of the knee</li>
     </ul>
 
     <details>
       <summary>Explanation</summary>
       <p>
-        RF, anti-CCP, and HLA-B*27 are not confirmatory here. MRI may show
-        synovitis but is inferior to DECT for gout. Arthrocentesis remains
-        diagnostic.
+        Elevated serum urate supports gout. MRI can show synovitis but is not
+        diagnostic. Arthrocentesis with crystal analysis is confirmatory.
       </p>
     </details>
   </div>
@@ -182,11 +215,9 @@
     <h3>Final diagnosis</h3>
     <details open>
       <summary>Reveal</summary>
+      <p><strong>Oligoarticular gout flare</strong></p>
       <p>
-        <strong>Oligoarticular gout flare</strong>
-      </p>
-      <p>
-        Supported by dietary triggers, elevated serum urate, ultrasound double
+        Supported by dietary triggers, elevated uric acid, ultrasound double
         contour sign, and negatively birefringent monosodium urate crystals on
         synovial fluid analysis.
       </p>
