@@ -6,7 +6,7 @@
   <title>RheumWave – Case 1</title>
 
   <style>
-    :root {
+    :root{
       --gradient-start:#0f2e4f;
       --gradient-end:#1b7b87;
       --bg:#f8fafc;
@@ -36,7 +36,6 @@
       align-items:center;
       box-shadow:var(--shadow);
     }
-
     header h1{margin:0;font-size:1.4rem;font-weight:800}
     nav a{color:#fff;text-decoration:none;font-weight:600;margin-left:16px}
 
@@ -52,25 +51,54 @@
 
     .meta{color:var(--muted);font-size:.9rem;margin-bottom:8px}
     h2,h3{margin-top:0}
+
     figure{margin:0 0 16px 0}
     figcaption{font-size:.85rem;color:var(--muted);margin-top:4px}
 
-    /* MCQ styles */
+    /* MCQ styling */
+    .mcq-wrap{margin-top:12px}
     .mcq-option{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
       border:1px solid var(--border);
       border-radius:10px;
       padding:10px 12px;
       margin:8px 0;
       cursor:pointer;
       background:#fff;
+      user-select:none;
+      transition:background .15s ease, border-color .15s ease, transform .05s ease;
     }
+    .mcq-option:hover{
+      background:#f1f5f9;
+      transform:translateY(-1px);
+    }
+    .mcq-dot{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid var(--border);
+      margin-top:2px;flex:0 0 auto;
+    }
+    .mcq-option.selected .mcq-dot{
+      border-color:rgba(27,123,135,.85);
+      background:rgba(27,123,135,.15);
+    }
+
     .mcq-option.correct{
       border-color:rgba(22,163,74,.6);
       background:rgba(22,163,74,.08);
     }
+    .mcq-option.correct .mcq-dot{
+      border-color:var(--ok);
+      background:rgba(22,163,74,.18);
+    }
     .mcq-option.wrong{
       border-color:rgba(220,38,38,.6);
       background:rgba(220,38,38,.08);
+    }
+    .mcq-option.wrong .mcq-dot{
+      border-color:var(--bad);
+      background:rgba(220,38,38,.18);
     }
 
     .feedback{
@@ -79,18 +107,49 @@
       border:1px solid var(--border);
       border-radius:10px;
       color:var(--muted);
+      background:#fff;
     }
 
+    .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
     .btn{
-      margin-top:10px;
       padding:8px 12px;
-      border-radius:8px;
+      border-radius:10px;
       border:none;
       cursor:pointer;
-      font-weight:700;
+      font-weight:800;
       background:var(--accent);
       color:#fff;
     }
+    .btn.secondary{
+      background:#e2e8f0;
+      color:var(--text);
+      border:1px solid var(--border);
+    }
+
+    details.expl{
+      margin-top:12px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:10px 12px;
+      background:#fff;
+    }
+    details.expl summary{
+      cursor:pointer;
+      font-weight:900;
+      color:var(--accent);
+      list-style:none;
+    }
+    details.expl summary::-webkit-details-marker{display:none}
+    .opt-expl{
+      border-top:1px solid var(--border);
+      padding-top:10px;
+      margin-top:10px;
+    }
+    .opt-expl:first-child{
+      border-top:none;padding-top:0;margin-top:0;
+    }
+    .opt-title{font-weight:900;margin:0 0 6px 0}
+    .opt-body{margin:0;color:var(--text);line-height:1.55;white-space:pre-wrap}
 
     footer{
       text-align:center;
@@ -111,138 +170,256 @@
 
 <div class="container">
 
-  <!-- CASE TEXT (UNCHANGED) -->
+  <!-- CASE TEXT (VERBATIM) -->
   <div class="card">
     <h2>Case 1. Gout in the knee. Easy</h2>
+
+    <p>38-year-old white male presenting with 3 weeks of left knee pain.</p>
+
     <p>
-      38-year-old white male presenting with 3 weeks of left knee pain.
+      He first injured this knee while running 10 years ago and nearly recovered with physiotherapy but has experienced intermittent episodes of left knee pain and swelling for the past 5 years, often occurring every few months and sometimes triggered by camping, increased alcohol intake, or red meat; he has never had classic podagra.
     </p>
+
     <p>
-      He first injured this knee while running 10 years ago and nearly recovered
-      with physiotherapy but has experienced intermittent episodes of left knee
-      pain and swelling for the past 5 years, often occurring every few months
-      and sometimes triggered by camping, increased alcohol intake, or red meat;
-      he has never had classic podagra.
+      Over the past 3 weeks, he has developed an acute flare of left knee pain with warmth, swelling, and limited range of motion due to pain and effusion, though symptoms have improved with Celebrex. He occasionally experiences mild right knee discomfort.
     </p>
+
     <p>
-      Over the past 3 weeks, he has developed an acute flare of left knee pain
-      with warmth, swelling, and limited range of motion due to pain and effusion,
-      though symptoms have improved with Celebrex. He occasionally experiences
-      mild right knee discomfort.
+      He is otherwise well, with no inflammatory back pain, dactylitis, uveitis or constitutional symptoms.
     </p>
+
     <p>
-      He is otherwise well, with no inflammatory back pain, dactylitis, uveitis
-      or constitutional symptoms.
-    </p>
-    <p>
-      He is healthy, takes no long-term medications, works as a software engineer,
-      jogs intermittently, does not smoke, uses cannabis occasionally, drinks
-      about two servings of alcohol per week and lives with his wife and
-      18-month-old daughter.
+      He is healthy, takes no long-term medications, works as a software engineer, jogs intermittently, does not smoke, uses cannabis occasionally, drinks about two servings of alcohol per week and lives with his wife and 18-month-old daughter.
     </p>
   </div>
 
-  <!-- Q1: CHECK ALL THAT APPLY -->
+  <!-- Q1 (interactive multi-select) -->
   <div class="card">
     <h3>Q1. What symptoms would you inquire about in this case keeping in mind the most likely diagnosis? Check all correct answers.</h3>
 
-    <div class="mcq-option" data-q1="correct">History of psoriasis</div>
-    <div class="mcq-option" data-q1="correct">History of preceding infections</div>
-    <div class="mcq-option" data-q1="correct">Family history of gout</div>
-    <div class="mcq-option" data-q1="wrong">History of Raynaud’s</div>
+    <div class="mcq-wrap" data-qtype="multi" data-mcq>
+      <div class="mcq-option" data-index="1" data-correct="true">
+        <span class="mcq-dot"></span><div>History of psoriasis</div>
+      </div>
+      <div class="mcq-option" data-index="2" data-correct="true">
+        <span class="mcq-dot"></span><div>History of preceding infections</div>
+      </div>
+      <div class="mcq-option" data-index="3" data-correct="true">
+        <span class="mcq-dot"></span><div>Family history of gout</div>
+      </div>
+      <div class="mcq-option" data-index="4" data-correct="false">
+        <span class="mcq-dot"></span><div>History of Raynaud’s</div>
+      </div>
 
-    <div class="feedback" id="q1-feedback">
-      Select all that apply, then click submit.
+      <div class="feedback" data-feedback>Select all that apply, then click Submit.</div>
+
+      <div class="btnrow">
+        <button class="btn" type="button" data-submit>Submit</button>
+        <button class="btn secondary" type="button" data-reset>Reset</button>
+      </div>
+
+      <details class="expl">
+        <summary>View/Hide option explanations</summary>
+
+        <div class="opt-expl">
+          <p class="opt-title">History of psoriasis</p>
+          <p class="opt-body">Explanation: Inquiring about history of psoriasis in important as this increases risk of gout and to investigate the risk of this representing psoriatic arthritis.</p>
+        </div>
+
+        <div class="opt-expl">
+          <p class="opt-title">History of preceding infections</p>
+          <p class="opt-body">Explanation: It is important to ask about gastrointestinal or genitourinary infections in young male presenting with oligo-arthritis to assess for reactive arthritis.</p>
+        </div>
+
+        <div class="opt-expl">
+          <p class="opt-title">Family history of gout</p>
+          <p class="opt-body">Explanation: Gout is a potential diagnosis given the acute onset, dietary triggers and improvement of symptoms with NSAIDs alone.</p>
+        </div>
+
+        <div class="opt-expl">
+          <p class="opt-title">History of Raynaud’s</p>
+          <p class="opt-body">Explanation: Connective tissue disease is not the most likely diagnosis here.</p>
+        </div>
+      </details>
     </div>
-
-    <button class="btn" onclick="checkQ1()">Submit</button>
   </div>
 
-  <!-- PHYSICAL EXAM -->
+  <!-- PHYSICAL EXAM (VERBATIM) -->
   <div class="card">
     <p>
-      On physical examination, patient was afebrile, heart rate is 89, BP 136/80,
-      BMI is 28. He appeared well with normal gait. Examination of the
-      cardiopulmonary system as unremarkable. Musculoskeletal examination reveals
-      bilateral knee effusion and warmth, larger on the left. Tenderness along
-      the medial and lateral joint lines on the left. No focal tenderness along
-      the quadriceps, infrapatellar or Achilles insertion. No skin rashes or tophi.
+      On physical examination, patient was afebrile, heart rate is 89, BP 136/80, BMI is 28. He appeared well with normal gait. Examination of the cardiopulmonary system as unremarkable. Musculoskeletal examination reveals bilateral knee effusion and warmth, larger on the left. Tenderness along the medial and lateral joint lines on the left. No focal tenderness along the quadriceps, infrapatellar or Achilles insertion. No skin rashes or tophi.
     </p>
   </div>
 
-  <!-- ULTRASOUND IMAGES -->
+  <!-- ULTRASOUND (3 pictures; captions verbatim) -->
   <div class="card">
     <h3>Bedside ultrasound of the bilateral knees are demonstrated below:</h3>
 
     <figure>
-      <img src="images/lateral-femorotibial.png" style="width:100%;border-radius:12px;border:1px solid var(--border);">
+      <img src="images/lateral-femorotibial.png"
+           alt="Lateral femorotibial joint line view"
+           style="width:100%;border-radius:12px;border:1px solid var(--border);"
+           loading="lazy">
+      <figcaption>Lateral femorotibial joint line view</figcaption>
       <figcaption>Lateral femorotibial joint line view</figcaption>
     </figure>
 
     <figure>
-      <img src="images/suprapatellar-long.png" style="width:100%;border-radius:12px;border:1px solid var(--border);">
+      <img src="images/suprapatellar-long.png"
+           alt="Longitudinal suprapatellar with knee in maximum flexion"
+           style="width:100%;border-radius:12px;border:1px solid var(--border);"
+           loading="lazy">
+      <figcaption>Longitudinal suprapatellar with knee in maximum flexion</figcaption>
       <figcaption>Longitudinal suprapatellar with knee in maximum flexion</figcaption>
     </figure>
 
     <figure>
-      <img src="images/suprapatellar-trans.png" style="width:100%;border-radius:12px;border:1px solid var(--border);">
+      <img src="images/suprapatellar-trans.png"
+           alt="Transverse suprapatellar with knee in maximum flexion"
+           style="width:100%;border-radius:12px;border:1px solid var(--border);"
+           loading="lazy">
+      <figcaption>Transverse suprapatellar with knee in maximum flexion</figcaption>
       <figcaption>Transverse suprapatellar with knee in maximum flexion</figcaption>
     </figure>
   </div>
 
-  <!-- Q2 -->
+  <!-- Q2 (interactive single-best-answer) -->
   <div class="card">
     <h3>Q2. What is the finding indicated by the yellow arrow?</h3>
 
-    <div class="mcq-option" onclick="checkSingle(this,false)">Interface sign (normal artifact)</div>
-    <div class="mcq-option" onclick="checkSingle(this,false)">Chondrosis (cartilage loss)</div>
-    <div class="mcq-option" onclick="checkSingle(this,true)">Double contour sign (monosodium urate crystal deposition)</div>
-    <div class="mcq-option" onclick="checkSingle(this,false)">Pseudo-double contour (calcium pyrophosphate crystal deposition)</div>
+    <div class="mcq-wrap" data-qtype="single" data-mcq data-correct-index="3">
+      <div class="mcq-option" data-index="1"><span class="mcq-dot"></span><div>Interface sign (normal artifact)</div></div>
+      <div class="mcq-option" data-index="2"><span class="mcq-dot"></span><div>Chondrosis (cartilage loss)</div></div>
+      <div class="mcq-option" data-index="3"><span class="mcq-dot"></span><div>Double contour sign (monosodium urate crystal deposition)</div></div>
+      <div class="mcq-option" data-index="4"><span class="mcq-dot"></span><div>Pseudo-double contour (calcium pyrophosphate crystal deposition)</div></div>
 
-    <div class="feedback">Click an option to see feedback.</div>
+      <div class="feedback" data-feedback>Click an option to see feedback.</div>
+
+      <div class="btnrow">
+        <button class="btn secondary" type="button" data-reset>Reset</button>
+      </div>
+
+      <details class="expl">
+        <summary>View/Hide option explanations</summary>
+
+        <div class="opt-expl">
+          <p class="opt-title">Interface sign (normal artifact)</p>
+          <p class="opt-body"></p>
+        </div>
+
+        <div class="opt-expl">
+          <p class="opt-title">Chondrosis (cartilage loss)</p>
+          <p class="opt-body"></p>
+        </div>
+
+        <div class="opt-expl">
+          <p class="opt-title">Double contour sign (monosodium urate crystal deposition)</p>
+          <p class="opt-body"></p>
+        </div>
+
+        <div class="opt-expl">
+          <p class="opt-title">Pseudo-double contour (calcium pyrophosphate crystal deposition)</p>
+          <p class="opt-body"></p>
+        </div>
+      </details>
+    </div>
   </div>
 
-  <!-- Q3 -->
+  <!-- Q3 (interactive single-best-answer; text verbatim; explanations verbatim where present) -->
   <div class="card">
     <h3>Q3. What investigations are more likely to aid in confirming the diagnosis?</h3>
 
-    <div class="mcq-option" onclick="checkSingle(this,false)">RF and Anti-CCP</div>
-    <div class="mcq-option" onclick="checkSingle(this,false)">HLA-B*27</div>
-    <div class="mcq-option" onclick="checkSingle(this,true)">Urate serum level</div>
-    <div class="mcq-option" onclick="checkSingle(this,false)">MRI of the knee</div>
+    <div class="mcq-wrap" data-qtype="single" data-mcq data-correct-index="3">
+      <div class="mcq-option" data-index="1"><span class="mcq-dot"></span><div>RF and Anti-CCP</div></div>
+      <div class="mcq-option" data-index="2"><span class="mcq-dot"></span><div>HLA-B*27</div></div>
+      <div class="mcq-option" data-index="3"><span class="mcq-dot"></span><div>Urate serum level</div></div>
+      <div class="mcq-option" data-index="4"><span class="mcq-dot"></span><div>MRI of the knee</div></div>
+
+      <div class="feedback" data-feedback>Click an option to see feedback.</div>
+
+      <div class="btnrow">
+        <button class="btn secondary" type="button" data-reset>Reset</button>
+      </div>
+
+      <details class="expl">
+        <summary>View/Hide option explanations</summary>
+
+        <div class="opt-expl">
+          <p class="opt-title">RF and Anti-CCP</p>
+          <p class="opt-body">Explanation: Rheumatoid arthritis is not the most likely diagnosis here.</p>
+        </div>
+
+        <div class="opt-expl">
+          <p class="opt-title">HLA-B*27</p>
+          <p class="opt-body">Explanation: HLA-B*27 is not utilized as a confirmatory test, though it’s presence has prognostic value.</p>
+        </div>
+
+        <div class="opt-expl">
+          <p class="opt-title">Urate serum level</p>
+          <p class="opt-body"></p>
+        </div>
+
+        <div class="opt-expl">
+          <p class="opt-title">MRI of the knee</p>
+          <p class="opt-body">Explanation: MRI of the knee is likely to detect synovitis and effusion but is not the best modality to assess for gout. Dual-energy CT (DECT) scan is a more favorable imaging modality.</p>
+        </div>
+      </details>
+    </div>
   </div>
 
-  <!-- INVESTIGATIONS -->
+  <!-- INVESTIGATIONS (VERBATIM) -->
   <div class="card">
     <p>
-      Investigations reveal a uric acid level of 559 umol/L, CRP of 18 mg/L,
-      negative RF, anti-CCP and HLA-B*27. Fluid analysis from arthrocentesis of
-      the left knee reveals 5966 absolute WBC count (mostly neutrophils and
-      monocytes), 2000 RBC and negative culture. The synovial fluid sample was
-      examined under polarized light microscopy and needle-shaped, negatively
-      birefringent crystals were visualized, consistent with monosodium urate
-      crystals.
+      Investigations reveal a uric acid level of 559 umol/L, CRP of 18 mg/L, negative RF, anti-CCP and HLA-B*27. Fluid analysis from arthrocentesis of the left knee reveals 5966 absolute WBC count (mostly neutrophils and monocytes), 2000 RBC and negative culture. The synovial fluid sample was examined under polarized light microscopy and needle-shaped, negatively birefringent crystals were visualized, consistent with monosodium urate crystals.
     </p>
   </div>
 
-  <!-- Q4 -->
+  <!-- Q4 (interactive single-best-answer) -->
   <div class="card">
     <h3>Q4. What is your final diagnosis?</h3>
 
-    <div class="mcq-option" onclick="checkSingle(this,true)">Oligoarticular gout flare</div>
-    <div class="mcq-option" onclick="checkSingle(this,false)">Peripheral spondylarthritis</div>
-    <div class="mcq-option" onclick="checkSingle(this,false)">Early rheumatoid arthritis</div>
-    <div class="mcq-option" onclick="checkSingle(this,false)">Secondary osteoarthritis</div>
+    <div class="mcq-wrap" data-qtype="single" data-mcq data-correct-index="1">
+      <div class="mcq-option" data-index="1"><span class="mcq-dot"></span><div>Oligoarticular gout flare</div></div>
+      <div class="mcq-option" data-index="2"><span class="mcq-dot"></span><div>Peripheral spondylarthritis</div></div>
+      <div class="mcq-option" data-index="3"><span class="mcq-dot"></span><div>Early rheumatoid arthritis</div></div>
+      <div class="mcq-option" data-index="4"><span class="mcq-dot"></span><div>Secondary osteoarthritis</div></div>
+
+      <div class="feedback" data-feedback>Click an option to see feedback.</div>
+
+      <div class="btnrow">
+        <button class="btn secondary" type="button" data-reset>Reset</button>
+      </div>
+
+      <details class="expl">
+        <summary>View/Hide option explanations</summary>
+
+        <div class="opt-expl">
+          <p class="opt-title">Oligoarticular gout flare</p>
+          <p class="opt-body"></p>
+        </div>
+
+        <div class="opt-expl">
+          <p class="opt-title">Peripheral spondylarthritis</p>
+          <p class="opt-body"></p>
+        </div>
+
+        <div class="opt-expl">
+          <p class="opt-title">Early rheumatoid arthritis</p>
+          <p class="opt-body"></p>
+        </div>
+
+        <div class="opt-expl">
+          <p class="opt-title">Secondary osteoarthritis</p>
+          <p class="opt-body"></p>
+        </div>
+      </details>
+    </div>
   </div>
 
-  <!-- FINAL EXPLANATION -->
+  <!-- FINAL EXPLANATION (VERBATIM) -->
   <div class="card">
     <p>
-      In light of the subacute non-traumatic onset, dietary triggers for the knee
-      pain/swelling, improvement of symptoms after 3 weeks despite no targeted
-      immunosuppression, seronegative status, high uric acid and the finding of
-      double contour on the bedside ultrasound, this patient is most likely to
-      have an oligo-articular flare of gout confirmed on synovial fluid analysis.
+      Final explanation: In light of the subacute non-traumatic onset, dietary triggers for the knee pain/swelling, improvement of symptoms after 3 weeks despite no targeted immunosuppression, seronegative status, high uric acid and the finding of double contour on the bedside ultrasound, this patient is most likely to have an oligo-articular flare of gout confirmed on synovial fluid analysis.
     </p>
   </div>
 
@@ -253,23 +430,70 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  function checkSingle(el, correct){
-    const siblings = el.parentElement.querySelectorAll(".mcq-option");
-    siblings.forEach(s => s.classList.remove("correct","wrong"));
-    el.classList.add(correct ? "correct" : "wrong");
-  }
+  // MCQ engine:
+  // - single: click marks correct/wrong immediately
+  // - multi: click toggles selection; Submit grades selections
+  document.querySelectorAll("[data-mcq]").forEach((wrap) => {
+    const qType = wrap.getAttribute("data-qtype");
+    const options = wrap.querySelectorAll(".mcq-option");
+    const feedback = wrap.querySelector("[data-feedback]");
+    const submitBtn = wrap.querySelector("[data-submit]");
+    const resetBtn = wrap.querySelector("[data-reset]");
 
-  function checkQ1(){
-    document.querySelectorAll("[data-q1]").forEach(opt=>{
-      if(opt.getAttribute("data-q1")==="correct"){
-        opt.classList.add("correct");
-      } else {
-        opt.classList.add("wrong");
-      }
-    });
-    document.getElementById("q1-feedback").innerText =
-      "Correct options highlighted in green. Incorrect option highlighted in red.";
-  }
+    function clearAll() {
+      options.forEach(o => {
+        o.classList.remove("selected", "correct", "wrong");
+        o.removeAttribute("data-picked");
+      });
+      if (feedback) feedback.textContent = qType === "multi"
+        ? "Select all that apply, then click Submit."
+        : "Click an option to see feedback.";
+    }
+
+    if (qType === "single") {
+      const correctIndex = Number(wrap.getAttribute("data-correct-index"));
+
+      options.forEach((opt) => {
+        opt.addEventListener("click", () => {
+          const idx = Number(opt.getAttribute("data-index"));
+          options.forEach(o => o.classList.remove("correct", "wrong", "selected"));
+          opt.classList.add("selected");
+          opt.classList.add(idx === correctIndex ? "correct" : "wrong");
+          if (feedback) feedback.textContent = idx === correctIndex ? "Correct." : "Incorrect.";
+        });
+      });
+
+      resetBtn?.addEventListener("click", clearAll);
+      clearAll();
+    }
+
+    if (qType === "multi") {
+      options.forEach((opt) => {
+        opt.addEventListener("click", () => {
+          const picked = opt.getAttribute("data-picked") === "true";
+          opt.setAttribute("data-picked", picked ? "false" : "true");
+          opt.classList.toggle("selected", !picked);
+          // don't grade until submit
+          opt.classList.remove("correct", "wrong");
+        });
+      });
+
+      submitBtn?.addEventListener("click", () => {
+        options.forEach((opt) => {
+          const isCorrect = opt.getAttribute("data-correct") === "true";
+          const picked = opt.getAttribute("data-picked") === "true";
+          opt.classList.remove("correct", "wrong");
+          if (picked && isCorrect) opt.classList.add("correct");
+          if (picked && !isCorrect) opt.classList.add("wrong");
+          if (!picked && isCorrect) opt.classList.add("wrong"); // missed correct
+        });
+        if (feedback) feedback.textContent = "Submitted.";
+      });
+
+      resetBtn?.addEventListener("click", clearAll);
+      clearAll();
+    }
+  });
 </script>
 </body>
 </html>
