@@ -16,6 +16,8 @@
       --accent:#1b7b87;
       --border:#e2e8f0;
       --shadow:0 6px 20px rgba(0,0,0,0.08);
+      --ok:#16a34a;
+      --bad:#dc2626;
     }
 
     body{
@@ -34,12 +36,10 @@
       align-items:center;
       box-shadow:var(--shadow);
     }
-
     header h1{margin:0;font-size:1.4rem;font-weight:800}
     nav a{color:#fff;text-decoration:none;font-weight:600;margin-left:16px}
 
     .container{max-width:900px;margin:0 auto;padding:24px}
-
     .card{
       background:var(--card-bg);
       border:1px solid var(--border);
@@ -48,33 +48,81 @@
       padding:20px;
       margin-bottom:16px;
     }
-
     .meta{color:var(--muted);font-size:.9rem;margin-bottom:8px}
-
-    ul{padding-left:18px;line-height:1.6}
     h2,h3{margin-top:0}
-
-    .mcq{
-      list-style:none;
-      padding-left:0;
-    }
-    .mcq li{
-      padding:8px 10px;
-      border:1px solid var(--border);
-      border-radius:8px;
-      margin-bottom:8px;
-      background:#fff;
-    }
-
-    details summary{
-      cursor:pointer;
-      font-weight:700;
-      color:var(--accent);
-      margin-top:8px;
-    }
-
     figure{margin:0 0 14px 0}
     figcaption{font-size:.85rem;color:var(--muted);margin-top:4px}
+
+    /* Interactive MCQ */
+    .mcq{
+      margin-top:12px;
+    }
+    .mcq-option{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      border:1px solid var(--border);
+      border-radius:10px;
+      padding:10px 12px;
+      margin:8px 0;
+      cursor:pointer;
+      user-select:none;
+      transition:transform .05s ease, background .15s ease, border-color .15s ease;
+      background:#fff;
+    }
+    .mcq-option:hover{
+      transform:translateY(-1px);
+      background:#f1f5f9;
+    }
+    .mcq-dot{
+      width:18px;
+      height:18px;
+      border-radius:999px;
+      border:2px solid var(--border);
+      margin-top:2px;
+      flex:0 0 auto;
+    }
+    .mcq-option.correct{
+      border-color:rgba(22,163,74,.55);
+      background:rgba(22,163,74,.08);
+    }
+    .mcq-option.correct .mcq-dot{
+      border-color:var(--ok);
+      background:rgba(22,163,74,.18);
+    }
+    .mcq-option.wrong{
+      border-color:rgba(220,38,38,.55);
+      background:rgba(220,38,38,.08);
+    }
+    .mcq-option.wrong .mcq-dot{
+      border-color:var(--bad);
+      background:rgba(220,38,38,.18);
+    }
+
+    .mcq-feedback{
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      background:#fff;
+    }
+    .mcq-feedback strong{color:var(--text)}
+    .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .btn{
+      border:none;
+      cursor:pointer;
+      padding:9px 12px;
+      border-radius:10px;
+      font-weight:800;
+      background:var(--accent);
+      color:#fff;
+    }
+    .btn.secondary{
+      background:#e2e8f0;
+      color:var(--text);
+      border:1px solid var(--border);
+    }
 
     footer{
       text-align:center;
@@ -95,62 +143,70 @@
 
 <div class="container">
 
-  <!-- CASE HEADER -->
   <div class="card">
     <h2>Case 1 – Gout in the Knee (Easy)</h2>
-    <div class="meta">
-      Region: Knee · Pathology: Crystal Arthropathy · Level: Intro
-    </div>
+    <div class="meta">Region: Knee · Pathology: Crystal Arthropathy · Level: Intro</div>
     <p>
-      38-year-old male presenting with a 3-week history of left knee pain,
-      swelling, warmth, and reduced range of motion.
+      38-year-old male presenting with 3 weeks of left knee pain with warmth,
+      swelling, and limited range of motion (improving with celecoxib).
     </p>
   </div>
 
-  <!-- CLINICAL VIGNETTE -->
   <div class="card">
     <h3>Clinical vignette</h3>
     <p>
-      The patient injured his left knee while running 10 years ago and nearly
-      recovered with physiotherapy. Over the past 5 years, he has experienced
-      intermittent episodes of knee pain and swelling every few months, often
-      triggered by increased alcohol intake or red meat. He has never had classic
-      podagra.
+      He injured this knee while running 10 years ago and nearly recovered with physiotherapy,
+      but has had intermittent episodes of left knee pain and swelling for ~5 years, sometimes
+      triggered by camping, increased alcohol intake, or red meat. No classic podagra.
     </p>
     <p>
-      Over the past 3 weeks, he developed an acute flare with warmth, swelling,
-      and limited range of motion, improving partially with celecoxib. He has no
-      inflammatory back pain, dactylitis, uveitis, or constitutional symptoms.
+      He is otherwise well, without inflammatory back pain, dactylitis, uveitis, or constitutional symptoms.
     </p>
   </div>
 
-  <!-- QUESTION 1 -->
+  <!-- Q1 -->
   <div class="card">
     <h3>Question 1</h3>
-    <p><strong>Which of the following would you inquire about given the most likely diagnosis?</strong></p>
+    <p><strong>What symptoms/history would you inquire about? (Single best answer)</strong></p>
 
-    <ul class="mcq">
-      <li>History of Raynaud’s phenomenon</li>
-      <li>History of psoriasis</li>
-      <li>Family history of gout</li>
-      <li>History of preceding GI or GU infection</li>
-    </ul>
+    <div class="mcq" data-mcq data-correct="2">
+      <div class="mcq-option" data-index="1">
+        <span class="mcq-dot"></span>
+        <div>History of Raynaud’s phenomenon</div>
+      </div>
+      <div class="mcq-option" data-index="2">
+        <span class="mcq-dot"></span>
+        <div>Family history of gout</div>
+      </div>
+      <div class="mcq-option" data-index="3">
+        <span class="mcq-dot"></span>
+        <div>History of seasonal allergies</div>
+      </div>
+      <div class="mcq-option" data-index="4">
+        <span class="mcq-dot"></span>
+        <div>History of migraine headaches</div>
+      </div>
 
-    <details>
-      <summary>Explanation</summary>
-      <p>
-        Psoriasis increases gout risk and raises consideration of psoriatic
-        arthritis. Family history supports gout. Preceding GI/GU infection is
-        relevant when considering reactive arthritis. Raynaud’s is less relevant.
-      </p>
-    </details>
+      <div class="mcq-feedback" data-feedback>
+        Choose an option to see feedback.
+      </div>
+
+      <div class="btnrow">
+        <button class="btn secondary" data-reset type="button">Reset question</button>
+      </div>
+
+      <template data-explain>
+        <strong>Correct:</strong> Family history of gout.  
+        <br><strong>Why:</strong> This presentation (episodic flares, dietary triggers, NSAID response) supports gout.
+        Raynaud’s and unrelated histories are less relevant here.
+      </template>
+    </div>
   </div>
 
-  <!-- ULTRASOUND -->
+  <!-- Ultrasound placeholders -->
   <div class="card">
-    <h3>Bedside ultrasound</h3>
+    <h3>Bedside ultrasound (add your images)</h3>
 
-    <!-- Replace src paths with your real images -->
     <figure>
       <img src="images/lateral-femorotibial.png"
            alt="Lateral femorotibial joint line view"
@@ -168,70 +224,135 @@
     </figure>
   </div>
 
-  <!-- QUESTION 2 -->
+  <!-- Q2 -->
   <div class="card">
     <h3>Question 2</h3>
-    <p><strong>What is the ultrasound finding indicated by the yellow arrow?</strong></p>
+    <p><strong>What is the finding indicated by the yellow arrow?</strong></p>
 
-    <ul class="mcq">
-      <li>Interface sign (normal artifact)</li>
-      <li>Chondrosis (cartilage loss)</li>
-      <li>Double contour sign</li>
-      <li>Pseudo–double contour sign</li>
-    </ul>
+    <div class="mcq" data-mcq data-correct="3">
+      <div class="mcq-option" data-index="1"><span class="mcq-dot"></span><div>Interface sign (normal artifact)</div></div>
+      <div class="mcq-option" data-index="2"><span class="mcq-dot"></span><div>Chondrosis (cartilage loss)</div></div>
+      <div class="mcq-option" data-index="3"><span class="mcq-dot"></span><div>Double contour sign (MSU crystal deposition)</div></div>
+      <div class="mcq-option" data-index="4"><span class="mcq-dot"></span><div>Pseudo–double contour (CPPD deposition)</div></div>
 
-    <details>
-      <summary>Answer</summary>
-      <p>
-        <strong>Double contour sign</strong> — representing monosodium urate
-        crystal deposition on the surface of articular cartilage.
-      </p>
-    </details>
+      <div class="mcq-feedback" data-feedback>Choose an option to see feedback.</div>
+      <div class="btnrow">
+        <button class="btn secondary" data-reset type="button">Reset question</button>
+      </div>
+
+      <template data-explain>
+        <strong>Correct:</strong> Double contour sign.  
+        <br><strong>Why:</strong> A hyperechoic line along the cartilage surface is classic for monosodium urate deposition.
+      </template>
+    </div>
   </div>
 
-  <!-- QUESTION 3 -->
+  <!-- Q3 -->
   <div class="card">
     <h3>Question 3</h3>
-    <p><strong>Which investigation is most helpful in confirming the diagnosis?</strong></p>
+    <p><strong>Which investigation is most helpful in confirming the diagnosis? (Single best answer)</strong></p>
 
-    <ul class="mcq">
-      <li>RF and anti-CCP antibodies</li>
-      <li>HLA-B*27</li>
-      <li>Serum urate level</li>
-      <li>MRI of the knee</li>
-    </ul>
+    <div class="mcq" data-mcq data-correct="3">
+      <div class="mcq-option" data-index="1"><span class="mcq-dot"></span><div>RF and anti-CCP</div></div>
+      <div class="mcq-option" data-index="2"><span class="mcq-dot"></span><div>HLA-B*27</div></div>
+      <div class="mcq-option" data-index="3"><span class="mcq-dot"></span><div>Synovial fluid analysis with crystal microscopy</div></div>
+      <div class="mcq-option" data-index="4"><span class="mcq-dot"></span><div>MRI of the knee</div></div>
 
-    <details>
-      <summary>Explanation</summary>
-      <p>
-        Elevated serum urate supports gout. MRI can show synovitis but is not
-        diagnostic. Arthrocentesis with crystal analysis is confirmatory.
-      </p>
-    </details>
+      <div class="mcq-feedback" data-feedback>Choose an option to see feedback.</div>
+      <div class="btnrow">
+        <button class="btn secondary" data-reset type="button">Reset question</button>
+      </div>
+
+      <template data-explain>
+        <strong>Correct:</strong> Synovial fluid analysis with crystal microscopy.  
+        <br><strong>Why:</strong> Identifying negatively birefringent, needle-shaped MSU crystals is confirmatory.
+        Serum urate supports but does not confirm; MRI is nonspecific.
+      </template>
+    </div>
   </div>
 
-  <!-- FINAL DIAGNOSIS -->
+  <!-- Q4 -->
   <div class="card">
-    <h3>Final diagnosis</h3>
-    <details open>
-      <summary>Reveal</summary>
-      <p><strong>Oligoarticular gout flare</strong></p>
-      <p>
-        Supported by dietary triggers, elevated uric acid, ultrasound double
-        contour sign, and negatively birefringent monosodium urate crystals on
-        synovial fluid analysis.
-      </p>
-    </details>
+    <h3>Question 4</h3>
+    <p><strong>What is the most likely final diagnosis?</strong></p>
+
+    <div class="mcq" data-mcq data-correct="1">
+      <div class="mcq-option" data-index="1"><span class="mcq-dot"></span><div>Oligoarticular gout flare</div></div>
+      <div class="mcq-option" data-index="2"><span class="mcq-dot"></span><div>Peripheral spondyloarthritis</div></div>
+      <div class="mcq-option" data-index="3"><span class="mcq-dot"></span><div>Early rheumatoid arthritis</div></div>
+      <div class="mcq-option" data-index="4"><span class="mcq-dot"></span><div>Secondary osteoarthritis</div></div>
+
+      <div class="mcq-feedback" data-feedback>Choose an option to see feedback.</div>
+      <div class="btnrow">
+        <button class="btn secondary" data-reset type="button">Reset question</button>
+      </div>
+
+      <template data-explain>
+        <strong>Correct:</strong> Oligoarticular gout flare.  
+        <br><strong>Why:</strong> Dietary triggers, episodic flares, NSAID response, double contour sign, and crystal-proven MSU deposition.
+      </template>
+    </div>
   </div>
 
 </div>
 
-<footer>
-  © <span id="year"></span> RheumWave
-</footer>
+<footer>© <span id="year"></span> RheumWave</footer>
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Interactive MCQ engine (single-best-answer)
+  document.querySelectorAll("[data-mcq]").forEach((mcq) => {
+    const correctIndex = Number(mcq.getAttribute("data-correct"));
+    const options = mcq.querySelectorAll(".mcq-option");
+    const feedbackBox = mcq.querySelector("[data-feedback]");
+    const explainTpl = mcq.querySelector("template[data-explain]");
+    const resetBtn = mcq.querySelector("[data-reset]");
+
+    function setFeedback(html, tone) {
+      feedbackBox.innerHTML = html;
+      // Optional: subtle tone emphasis
+      feedbackBox.style.borderColor =
+        tone === "ok" ? "rgba(22,163,74,.45)" :
+        tone === "bad" ? "rgba(220,38,38,.45)" :
+        "var(--border)";
+    }
+
+    function clearStyles() {
+      options.forEach(o => o.classList.remove("correct", "wrong"));
+      setFeedback("Choose an option to see feedback.", "neutral");
+    }
+
+    options.forEach((opt) => {
+      opt.addEventListener("click", () => {
+        // Lock to one attempt? If you want unlimited attempts, remove the next 2 lines.
+        // If you want unlimited attempts, comment these out:
+        // if (mcq.getAttribute("data-answered") === "true") return;
+        // mcq.setAttribute("data-answered", "true");
+
+        const chosen = Number(opt.getAttribute("data-index"));
+        options.forEach(o => o.classList.remove("correct", "wrong"));
+
+        if (chosen === correctIndex) {
+          opt.classList.add("correct");
+          setFeedback(explainTpl.innerHTML, "ok");
+        } else {
+          opt.classList.add("wrong");
+          setFeedback(
+            "<strong>Not quite.</strong> Try again — then check the explanation after a correct choice.",
+            "bad"
+          );
+        }
+      });
+    });
+
+    resetBtn?.addEventListener("click", () => {
+      mcq.removeAttribute("data-answered");
+      clearStyles();
+    });
+
+    clearStyles();
+  });
 </script>
 </body>
 </html>
